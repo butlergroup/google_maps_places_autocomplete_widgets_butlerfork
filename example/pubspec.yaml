@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  google_maps_places_autocomplete_widgets:
+  google_maps_places_autocomplete_widgets_butlerfork:
     path: ../
 
   # The following adds the Cupertino Icons font to your application.

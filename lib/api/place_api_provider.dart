@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:google_maps_places_autocomplete_widgets/api/autocomplete_types.dart';
+import 'package:google_maps_places_autocomplete_widgets_butlerfork/api/autocomplete_types.dart';
 import 'package:http/http.dart';
 
 import '/model/place.dart';
@@ -30,11 +30,9 @@ const bool debugJson = false;
 class PlaceApiProvider {
   final client = Client();
 
-  PlaceApiProvider(
-      this.sessionToken, this.mapsApiKey, this.compomentCountry, this.language);
+  PlaceApiProvider(this.sessionToken, this.compomentCountry, this.language);
 
   final String sessionToken;
-  final String mapsApiKey;
   final String? compomentCountry;
   final String? language;
 
@@ -123,7 +121,6 @@ result["predictions"] =
     final Map<String, dynamic> parameters = <String, dynamic>{
       'input': input,
       'types': typesString,
-      'key': mapsApiKey,
       'sessiontoken': sessionToken
     };
 
@@ -137,8 +134,8 @@ result["predictions"] =
 
     final Uri request = Uri(
         scheme: 'https',
-        host: 'maps.googleapis.com',
-        path: '/maps/api/place/autocomplete/json',
+        host: 'maps.yourdomain.com',
+        path: '/api/google-places-suggestion-lookup',
         queryParameters: parameters);
 
     final response = await client.get(request);
@@ -287,13 +284,12 @@ result["result"]
     final Map<String, dynamic> parameters = <String, dynamic>{
       'place_id': placeId,
       'fields': 'name,formatted_address,address_component,geometry',
-      'key': mapsApiKey,
       'sessiontoken': sessionToken
     };
     final Uri request = Uri(
         scheme: 'https',
-        host: 'maps.googleapis.com',
-        path: '/maps/api/place/details/json',
+        host: 'maps.yourdomain.com',
+        path: '/api/google-places-autocomplete',
 
         //PlaceApiNew     host: 'places.googleapis.com',
         //PlaceApiNew     path: '/v1/places/$placeId',

@@ -4,14 +4,11 @@ import '/model/place.dart';
 import '/model/suggestion.dart';
 
 class AddressService {
-  AddressService(this.sessionToken, this.mapsApiKey, this.componentCountry,
-      this.language) {
-    apiClient =
-        PlaceApiProvider(sessionToken, mapsApiKey, componentCountry, language);
+  AddressService(this.sessionToken, this.componentCountry, this.language) {
+    apiClient = PlaceApiProvider(sessionToken, componentCountry, language);
   }
 
   final String sessionToken;
-  final String mapsApiKey;
   final String? componentCountry;
   final String? language;
   late PlaceApiProvider apiClient;

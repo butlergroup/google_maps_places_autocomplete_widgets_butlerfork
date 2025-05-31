@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/google_maps_places_autocomplete_widgets.iml" filepath="$PROJECT_DIR$/google_maps_places_autocomplete_widgets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/google_maps_places_autocomplete_widgets_butlerfork.iml" filepath="$PROJECT_DIR$/google_maps_places_autocomplete_widgets_butlerfork.iml" />
     </modules>
   </component>
 </project>

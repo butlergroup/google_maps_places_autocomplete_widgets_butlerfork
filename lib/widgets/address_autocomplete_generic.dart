@@ -6,7 +6,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_maps_places_autocomplete_widgets/api/autocomplete_types.dart';
+import 'package:google_maps_places_autocomplete_widgets_butlerfork/api/autocomplete_types.dart';
 
 import '/model/suggestion.dart';
 import '/model/place.dart';
@@ -40,9 +40,6 @@ abstract class AddresssAutocompleteStatefulWidget extends StatefulWidget {
   /// item is selected
   abstract final String? Function(Place place)?
       onSuggestionClickGetTextToUseForControl;
-
-  ///your maps api key, must not be null
-  abstract final String mapsApiKey;
 
   ///builder used to render each item displayed
   ///must not be null
@@ -143,8 +140,8 @@ mixin SuggestionOverlayMixin<T extends AddresssAutocompleteStatefulWidget>
         widget.controller ?? TextEditingController(text: widget.initialValue);
     focusNode = widget.focusNode ?? FocusNode();
 
-    addressService = AddressService(sessionToken, widget.mapsApiKey,
-        widget.componentCountry, widget.language);
+    addressService =
+        AddressService(sessionToken, widget.componentCountry, widget.language);
 
     focusNode.addListener(showOrHideOverlayOnFocusChange);
   }

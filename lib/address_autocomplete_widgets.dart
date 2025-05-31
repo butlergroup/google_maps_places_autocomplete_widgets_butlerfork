@@ -5,8 +5,8 @@
 /// (The default is [AutoCompleteType.address]).
 library;
 
-export 'package:google_maps_places_autocomplete_widgets/api/autocomplete_types.dart';
-export 'package:google_maps_places_autocomplete_widgets/widgets/address_autocomplete_textfield.dart';
-export 'package:google_maps_places_autocomplete_widgets/widgets/address_autocomplete_textformfield.dart';
-export 'package:google_maps_places_autocomplete_widgets/model/place.dart';
-export 'package:google_maps_places_autocomplete_widgets/model/suggestion.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/api/autocomplete_types.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/widgets/address_autocomplete_textfield.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/widgets/address_autocomplete_textformfield.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/model/place.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/model/suggestion.dart';

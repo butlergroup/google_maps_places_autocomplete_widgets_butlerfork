@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_maps_places_autocomplete_widgets/api/autocomplete_types.dart';
+import 'package:google_maps_places_autocomplete_widgets_butlerfork/api/autocomplete_types.dart';
 import 'package:uuid/uuid.dart';
 
 import 'address_autocomplete_generic.dart';
@@ -12,8 +12,8 @@ import '/model/place.dart';
 import '/model/suggestion.dart';
 import '/service/address_service.dart';
 
-export 'package:google_maps_places_autocomplete_widgets/model/place.dart';
-export 'package:google_maps_places_autocomplete_widgets/model/suggestion.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/model/place.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/model/suggestion.dart';
 
 class AddressAutocompleteTextField extends AddresssAutocompleteStatefulWidget {
   /// Callback triggered before sending query to google places API.
@@ -45,10 +45,6 @@ class AddressAutocompleteTextField extends AddresssAutocompleteStatefulWidget {
   ///Callback triggered when a item is selected
   @override
   final String? Function(Place place)? onSuggestionClickGetTextToUseForControl;
-
-  ///Your Google Maps API key, this is required.
-  @override
-  final String mapsApiKey;
 
   ///builder used to render each item displayed
   ///must not be null
@@ -184,7 +180,6 @@ class AddressAutocompleteTextField extends AddresssAutocompleteStatefulWidget {
 
   const AddressAutocompleteTextField({
     super.key,
-    required this.mapsApiKey,
     this.controller,
     this.focusNode,
     this.initialValue,

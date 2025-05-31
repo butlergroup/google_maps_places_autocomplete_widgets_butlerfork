@@ -1,10 +1,24 @@
-# Google_Maps_Places_Autocomplete_Widgets
+# Google_Maps_Places_Autocomplete_Widgets_ButlerFork
+
+## Notes on Enhancements & Changes / How to Deploy
+
+This package was forked & modified because it's typically safer to inject API keys and other sensitive runtime values server-side rather than client-side. To deploy the Node.js server that will handle the requests:
+
+1. [Install Node.js](https://nodejs.org/en) or use nvm (Node version manager) to install Node.js [on Linux/MacOS](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating) or [on Windows](https://github.com/coreybutler/nvm-windows).
+2. Clone/fork the repo or download the ZIP. Copy package.json, start.js, ecosystem.config.js, and server.js to the folder on your server you want to host the application from. 
+3. Run "npm install" from application root folder to install dependencies/packages.
+4. Add your SSL certificate to a directory named ssl in the root of the project (key.pem and cert.pem are the files server.js is configured to look for). Ensure you have port 443 (or your port of choice) open for traffic. 
+5. Install pm2 to manage and enable auto-start of the Node.js app: npm install pm2@latest -g (this is how the files in this project are configured). Then run "pm2 start ecosystem.config.js" to start the application. 
+6. Change lines 124-125 and 295-296 of place_api_provider.dart to point to your domain and server endpoints of choice (must match what's defined in server.js).
+7. Include this package in your Flutter/Dart project's pubspec.yaml dependencies. Build and deploy your app, and voila! Your application now interfaces with the Google Maps API server-side without potentially exposing your API key via the front-end. 
+8. (optional) add our [env_encryption_tool_nodejs](https://github.com/butlergroup/env_encryption_tool_nodejs) to your Node.js code to encrypt your environment variables, adding even more security. 
+
+## Additional Notes
 
 Feature complete, 'drop in' replacements for Flutter `TextField` or `TextFormField` widgets, providing address autocompletion using the Google Maps Places API.
 The only required additional parameter is your Google Maps API key.
 Just rename `TextField` -> `AddressAutocompleteTextField`,
 (or `TextFormField` -> `AddressAutocompleteTextFormField`),
-and add your `mapsApiKey:'YOUR_GOOGLE_MAPS_API_KEY'` as the only required additional parameter.
 
 If desired customize any look/behavior of the autocompletion using the additional optional parameters.
 
@@ -57,7 +71,7 @@ You can find a complete example of usage in `example/main.dart`.
 import the package:
 
 ```dart
-import 'package:google_maps_places_autocomplete_widgets/address_autocomplete_widgets.dart';
+import 'package:google_maps_places_autocomplete_widgets_butlerfork/address_autocomplete_widgets.dart';
 ```
 
 Add your google places api key, optional `onSuggestionClick` callback,
@@ -65,7 +79,6 @@ and optional language and country restrictions parameters:
 
 ```dart
 AddressAutocompleteTextField(
-    mapsApiKey: 'YOUR GOOGLE MAPS API KEY HERE',
     onSuggestionClick: onSuggestionClick,
     componentCountry: 'us',
     language: 'en-US'
@@ -79,7 +92,6 @@ or
 
 ```dart
 AddressAutocompleteTextFormField(
-    mapsApiKey: 'YOUR GOOGLE MAPS API KEY HERE',
     onSuggestionClick: onSuggestionClick,
     componentCountry: 'us',
     language: 'en-US'
@@ -131,7 +143,7 @@ multiple other TextFormFields from the user's selected address suggestion.
 This package implements the official documentation of Google Maps Places API
 and use address as types and receive a detail with address_component and geometry as fields only
 
-GitHub Repo: [https://github.com/timmaffett/google_maps_places_autocomplete_widgets]( https://github.com/timmaffett/google_maps_places_autocomplete_widgets)
+GitHub Repo: [https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork](https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork)
 
 ## Acknowledgements
 

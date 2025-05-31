@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_maps_places_autocomplete_widgets/address_autocomplete_widgets.dart';
-import '/privatekeys.dart';
+import 'package:google_maps_places_autocomplete_widgets_butlerfork/address_autocomplete_widgets.dart';
+// import '/privatekeys.dart';
 
 void main() {
   runApp(const MyApp());
@@ -171,7 +171,6 @@ class _AddressAutocompleteTextFieldExampleState
                   // create a `privatekeys.dart` file and add your API key there
                   //   `const GOOGLE_MAPS_ACCOUNT_API_KEY = 'YourGoogleMapsApiKey_XXXXyyyzzzz';`
                   // the .gitignore file is set so this does not go into source repository.
-                  mapsApiKey: GOOGLE_MAPS_ACCOUNT_API_KEY,
 
                   // optional callback arg for use when you do not want `formattedAddress`
                   // to be used to fill the autocomplete textfield when an address is chosen.
@@ -229,7 +228,6 @@ class _AddressAutocompleteTextFieldExampleState
                   // create a `privatekeys.dart` file and add your API key there
                   //   `const GOOGLE_MAPS_ACCOUNT_API_KEY = 'YourGoogleMapsApiKey_XXXXyyyzzzz';`
                   // the .gitignore file is set so this does not go into source repository.
-                  mapsApiKey: GOOGLE_MAPS_ACCOUNT_API_KEY,
 
                   // optional callback arg for use when you do not want `formattedAddress`
                   // to be used to fill the autocomplete textfield when an address is chosen.
@@ -285,7 +283,6 @@ class _AddressAutocompleteTextFieldExampleState
                   // create a `privatekeys.dart` file and add your API key there
                   //   `const GOOGLE_MAPS_ACCOUNT_API_KEY = 'YourGoogleMapsApiKey_XXXXyyyzzzz';`
                   // the .gitignore file is set so this does not go into source repository.
-                  mapsApiKey: GOOGLE_MAPS_ACCOUNT_API_KEY,
 
                   // optional callback arg for use when you do not want `formattedAddress`
                   // to be used to fill the autocomplete textfield when an address is chosen.
@@ -335,7 +332,6 @@ class _AddressAutocompleteTextFieldExampleState
                   // create a `privatekeys.dart` file and add your API key there
                   //   `const GOOGLE_MAPS_ACCOUNT_API_KEY = 'YourGoogleMapsApiKey_XXXXyyyzzzz';`
                   // the .gitignore file is set so this does not go into source repository.
-                  mapsApiKey: GOOGLE_MAPS_ACCOUNT_API_KEY,
 
                   // optional callback arg for use when you do not want `formattedAddress`
                   // to be used to fill the autocomplete textfield when an address is chosen.
@@ -590,7 +586,6 @@ class _AddressAutocompleteTextFormFieldExampleState
                 const LeftAlignedLabelRow('Address'),
                 AddressAutocompleteTextFormField(
                   // following args specific to AddressAutocompleteTextFormField()
-                  mapsApiKey: GOOGLE_MAPS_ACCOUNT_API_KEY,
                   debounceTime: 200,
                   //In practice this does not seem to help United States address//prepareQuery: prepareQuery,
                   onClearClick: onClearClick,

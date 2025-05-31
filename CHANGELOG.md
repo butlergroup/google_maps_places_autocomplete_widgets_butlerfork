@@ -1,4 +1,8 @@
-# google_maps_places_autocomplete_widgets package
+# google_maps_places_autocomplete_widgets_butlerfork package
+
+## 1.3.4
+
+Package forked from https://github.com/timmaffett/google_maps_places_autocomplete_widgets and modified for serve-side use via a Node.js application 
 
 ## 1.3.3
 

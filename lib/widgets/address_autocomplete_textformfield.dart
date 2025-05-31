@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_maps_places_autocomplete_widgets/api/autocomplete_types.dart';
+import 'package:google_maps_places_autocomplete_widgets_butlerfork/api/autocomplete_types.dart';
 import 'package:uuid/uuid.dart';
 
 import 'address_autocomplete_generic.dart';
@@ -12,8 +12,8 @@ import '/model/place.dart';
 import '/model/suggestion.dart';
 import '/service/address_service.dart';
 
-export 'package:google_maps_places_autocomplete_widgets/model/place.dart';
-export 'package:google_maps_places_autocomplete_widgets/model/suggestion.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/model/place.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/model/suggestion.dart';
 
 typedef ReportValidationFailureAndRequestFocusCallback = bool Function(
     String errorMessageForThisFailedValidation);
@@ -49,10 +49,6 @@ class AddressAutocompleteTextFormField
   ///Callback triggered when a item is selected
   @override
   final String? Function(Place place)? onSuggestionClickGetTextToUseForControl;
-
-  ///your maps api key, must not be null
-  @override
-  final String mapsApiKey;
 
   ///builder used to render each item displayed
   ///must not be null
@@ -97,7 +93,7 @@ class AddressAutocompleteTextFormField
 
   /// (deprecated) PostalCode lookup instead of address lookup (defaults to false)
   /// (This has now been deprecated and replaced with [type] parameter `type:AutoCompleteType.postalCode`).
-  @override 
+  @override
   @Deprecated(
       "If passing true use `type:AutoCompleteType.postalCode` instead. (false == passing `type:AutoCompleteType.address`")
   final bool? postalCodeLookup;
@@ -228,7 +224,6 @@ class AddressAutocompleteTextFormField
 
   const AddressAutocompleteTextFormField({
     super.key,
-    required this.mapsApiKey,
     this.controller,
     this.requiredField = false,
     this.validator = defaultValidator,
