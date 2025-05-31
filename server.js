@@ -5,9 +5,13 @@ try {
     const cors = require('cors');
     const axios = require('axios');
     const path = require('path');
+    const helmet = require('helmet');
 
     const app = express();
     app.set('trust proxy', true);
+
+    // Security headers
+    app.use(helmet());
 
     // middleware config
     app.use(cors());
