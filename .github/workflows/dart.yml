@@ -46,8 +46,8 @@ jobs:
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
       # want to change this to 'flutter test'.
-      - name: Run tests
-        run: flutter test
+      - name: Run tests with coverage
+        run: flutter test --coverage
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2.3.6
