@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        channel: [stable] # or beta, dev
+        channel: [stable, beta, dev] # or beta, dev
     steps:
       - uses: actions/checkout@v4
 
@@ -48,3 +48,6 @@ jobs:
       # want to change this to 'flutter test'.
       - name: Run tests
         run: flutter test
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2.3.6
