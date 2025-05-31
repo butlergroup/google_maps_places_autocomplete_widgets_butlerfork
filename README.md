@@ -1,5 +1,5 @@
 [![CodeQL](https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork/actions/workflows/github-code-scanning/codeql)
-[![Static Badge](https://img.shields.io/badge/Snyk%20Security-Monitored-purple?link=https%3A%2F%2Fapp.snyk.io%2Fshare%2F784f6fef-6aaf-47ed-81ba-99e05b854665)]
+[![Snyk Security-Monitored](https://img.shields.io/badge/Snyk%20Security-Monitored-purple)](https://app.snyk.io/share/784f6fef-6aaf-47ed-81ba-99e05b854665)
 [![Feature Requests](https://img.shields.io/github/issues/butlergroup/google_maps_places_autocomplete_widgets_butlerfork/feature-request.svg)](https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
 [![Bugs](https://img.shields.io/github/issues/butlergroup/google_maps_places_autocomplete_widgets_butlerfork/bug.svg)](https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
 
