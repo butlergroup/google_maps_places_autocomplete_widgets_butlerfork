@@ -23,6 +23,10 @@ This package was forked & modified because it's typically safer to inject API ke
 7. Include this package in your Flutter/Dart project's pubspec.yaml dependencies. Build and deploy your app, and voila! Your application now interfaces with the Google Maps API server-side without potentially exposing your API key via the front-end. 
 8. (optional) add our [env_encryption_tool_nodejs](https://github.com/butlergroup/env_encryption_tool_nodejs) to your Node.js code to encrypt your environment variables, adding even more security. 
 
+## Contact
+
+Have questions or suggestions? Reach out to us at welcome@butlergroup.net. Thank you and happy coding! :)
+
 ## Additional Notes
 
 Feature complete, 'drop in' replacements for Flutter `TextField` or `TextFormField` widgets, providing address autocompletion using the Google Maps Places API.
@@ -164,3 +168,7 @@ and it was easiest for me to create my own new package.
 
 The rather unfortunate (and long) name for this package is a result of the
 pub.dev namespace clutter of various packages also using Google Maps Places API.
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=butlergroup/google_maps_places_autocomplete_widgets_butlerfork&type=Date)](https://www.star-history.com/#butlergroup/google_maps_places_autocomplete_widgets_butlerfork&Date)
