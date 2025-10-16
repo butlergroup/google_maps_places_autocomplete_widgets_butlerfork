@@ -10,6 +10,9 @@
 .svn/
 .vscode
 
+# Dependency directories
+node_modules/
+
 # IntelliJ related
 # *.iml
 # *.ipr
