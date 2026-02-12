@@ -1,6 +1,6 @@
 name: google_maps_places_autocomplete_widgets_butlerfork
 description: TextField and TextFormField widgets using Google Maps Places Api for Address Autocompletion.
-version: 1.3.8
+version: 1.3.9
 homepage: https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork
 repository: https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork
 issue_tracker: https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork/issues
@@ -33,10 +33,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  test: ^1.28.0
+  test: ^1.29.0
 
 dependency_overrides:
-  test_api: 0.7.8 # overridden for compatibility with flutter_test
+  test_api: 0.7.9 # overridden for compatibility with flutter_test
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
