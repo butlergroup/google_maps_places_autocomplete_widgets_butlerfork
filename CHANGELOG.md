@@ -1,8 +1,34 @@
 # google_maps_places_autocomplete_widgets_butlerfork package
 
+## Version 1.3.11 
+
+#### New Features
+
+
+#### Improvements
+
+
+#### Fixes
+
+
+---
+
+## Version 1.3.10 (03/03/2026)
+
+#### New Features
+- Full repo & code base overhaul
+
+#### Improvements
+- Full repo & code base overhaul
+
+#### Fixes
+- Full repo & code base overhaul
+
+---
+
 ## 1.3.4
 
-Package forked from https://github.com/timmaffett/google_maps_places_autocomplete_widgets and modified for serve-side use via a Node.js application 
+Package forked from https://github.com/timmaffett/google_maps_places_autocomplete_widgets and modified for server-side use via a Node.js application 
 
 ## 1.3.3
 
