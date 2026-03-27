@@ -1,19 +1,59 @@
 # google_maps_places_autocomplete_widgets_butlerfork package
 
-## Version 1.3.11 
+## Version 1.3.11 (03-27-2026)
 
 #### New Features
 
 
 #### Improvements
-
+- Updated dependencies in package.json
 
 #### Fixes
+- Added override for brace-expansion@latest to package.json to correct a vulnerability 
+
+---
+
+## Version 1.3.10 (03-03-2026)
+
+#### New Features
+
+
+#### Improvements
+- Updated dependencies in pubspec.yaml and package.json
+
+#### Fixes
+- Added override for minimatch@latest to package.json to correct CVE-2026-27903
 
 
 ---
 
-## Version 1.3.10 (03/03/2026)
+## Version 1.3.9 (02-11-2026)
+
+Updated dependent package versions
+
+---
+
+## Version 1.3.8 (01-06-2026)
+
+Updated package versions
+Added a dependency override for qs to resolve CVE-2025-15284
+
+---
+
+## Version 1.3.7 (Dec 2, 2025)
+
+Updated package versions
+
+---
+
+## Version 1.3.6 (Nov 19, 2025)
+
+Updated package versions to latest
+Added an override for js-yaml@latest to correct CVE-2025-64718
+
+---
+
+## Version 1.3.5 (Oct 16, 2025)
 
 #### New Features
 - Full repo & code base overhaul
