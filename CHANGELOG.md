@@ -1,5 +1,18 @@
 # google_maps_places_autocomplete_widgets_butlerfork package
 
+## Version 1.3.12 (03-27-2026)
+
+#### New Features
+
+
+#### Improvements
+
+
+#### Fixes
+- Added override for path-to-regexp@latest to package.json to correct CVE-2026-4923 & CVE-2026-4926 
+
+---
+
 ## Version 1.3.11 (03-27-2026)
 
 #### New Features
