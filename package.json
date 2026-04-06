@@ -5,7 +5,7 @@
   "main": "server.js",
   "author": "Chris Butler",
   "devDependencies": {
-    "eslint": "^10.1.0"
+    "eslint": "^10.2.0"
   },
   "eslintConfig": {},
   "scripts": {
