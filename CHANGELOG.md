@@ -1,12 +1,26 @@
 # google_maps_places_autocomplete_widgets_butlerfork package
 
-## Version 1.3.15 
+## Version 1.3.16 
 
 #### New Features
 
 
 #### Improvements
 
+
+#### Fixes
+
+
+---
+
+## Version 1.3.15 (04-19-2026)
+
+#### New Features
+
+
+#### Improvements
+- Bump axios from 1.15.0 to 1.15.1
+- Bump eslint from 10.2.0 to 10.2.1 
 
 #### Fixes
 
