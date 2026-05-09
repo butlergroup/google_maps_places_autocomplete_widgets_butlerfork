@@ -22,7 +22,12 @@ jobs:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
         channel: [ stable ]
     steps:
-      - uses: actions/checkout@v6
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
       # You can specify other versions if desired, see documentation here:
@@ -30,7 +35,7 @@ jobs:
       # - uses: dart-lang/setup-dart@v1
 
       - name: Install Flutter SDK
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
           flutter-version: "any" # or "any" if you don't want to lock to a version
           channel: ${{ matrix.channel }}
@@ -53,6 +58,6 @@ jobs:
         run: flutter test --coverage
 
       - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v2.3.6
+        uses: coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b # v2.3.6
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
