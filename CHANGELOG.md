@@ -1,31 +1,38 @@
 # google_maps_places_autocomplete_widgets_butlerfork package
 
-## Version 1.3.18 
+## Version 1.3.19
 
 #### New Features
 
-
 #### Improvements
-
 
 #### Fixes
 
-
 ---
 
-# google_maps_places_autocomplete_widgets_butlerfork package
+## Version 1.3.18 (05-26-2026)
+
+#### New Features
+
+#### Improvements
+
+- bump brace-expansion from 5.0.5 to 5.0.6
+- bump qs from 6.15.1 to 6.15.2
+
+#### Fixes
+
+---
 
 ## Version 1.3.17 (05-04-2026)
 
 #### New Features
 
-
 #### Improvements
+
 - bump eslint from 10.2.1 to 10.3.0 
 - bump axios from 1.15.2 to 1.16.0 
 
 #### Fixes
-
 
 ---
 
@@ -33,12 +40,11 @@
 
 #### New Features
 
-
 #### Improvements
+
 - bump axios from 1.15.1 to 1.15.2
 
 #### Fixes
-
 
 ---
 
@@ -46,13 +52,12 @@
 
 #### New Features
 
-
 #### Improvements
+
 - Bump axios from 1.15.0 to 1.15.1
 - Bump eslint from 10.2.0 to 10.2.1 
 
 #### Fixes
-
 
 ---
 
@@ -60,12 +65,11 @@
 
 #### New Features
 
-
 #### Improvements
+
 - Bump axios from 1.14.0 to 1.15.0
 
 #### Fixes
-
 
 ---
 
@@ -73,12 +77,11 @@
 
 #### New Features
 
-
 #### Improvements
+
 - bump eslint from 10.1.0 to 10.2.0
 
 #### Fixes
-
 
 ---
 
@@ -86,11 +89,10 @@
 
 #### New Features
 
-
 #### Improvements
 
-
 #### Fixes
+
 - Added override for path-to-regexp@latest to package.json to correct CVE-2026-4923 & CVE-2026-4926 
 
 ---
@@ -99,11 +101,12 @@
 
 #### New Features
 
-
 #### Improvements
+
 - Updated dependencies in package.json
 
 #### Fixes
+
 - Added override for brace-expansion@latest to package.json to correct a vulnerability 
 
 ---
@@ -112,13 +115,13 @@
 
 #### New Features
 
-
 #### Improvements
+
 - Updated dependencies in pubspec.yaml and package.json
 
 #### Fixes
-- Added override for minimatch@latest to package.json to correct CVE-2026-27903
 
+- Added override for minimatch@latest to package.json to correct CVE-2026-27903
 
 ---
 
