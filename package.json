@@ -1,6 +1,6 @@
 {
   "name": "google_maps_places_autocomplete_widgets_butlerfork_server",
-  "version": "1.3.18",
+  "version": "1.3.20",
   "description": "google_maps_places_autocomplete_widgets_butlerfork_server",
   "main": "server.js",
   "author": "Chris Butler",
