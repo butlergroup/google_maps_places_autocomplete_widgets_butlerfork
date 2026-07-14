@@ -1,10 +1,22 @@
 # google_maps_places_autocomplete_widgets_butlerfork package
 
-## Version 1.3.20 
+## Version 1.3.21
 
 #### New Features
 
 #### Improvements
+
+#### Fixes
+
+---
+
+## Version 1.3.20 (07-14-2026)
+
+#### New Features
+
+#### Improvements
+
+- bumped dependency versions in package.json and pubspec.yaml
 
 #### Fixes
 
