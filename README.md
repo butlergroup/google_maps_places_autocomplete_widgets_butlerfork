@@ -172,4 +172,4 @@ pub.dev namespace clutter of various packages also using Google Maps Places API.
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=butlergroup/google_maps_places_autocomplete_widgets_butlerfork&type=Date)](https://www.star-history.com/#butlergroup/google_maps_places_autocomplete_widgets_butlerfork&Date)
+[![Star History Chart](https://api.star-history.com/chart?repos=butlergroup/google_maps_places_autocomplete_widgets_butlerfork&type=date&legend=top-left&sealed_token=Cfh-tC0M8aFxFCXQi09XXJSk_Gtht8OsT1aIXNO0qxwyG7kGIqKGS9YrCYVoaN3W0lSMf1PAzwF_oWAjN0mGlycjUJ9McTxvRRElPYpytcD07ZwuL-qCrQ)](https://www.star-history.com/?type=date&repos=butlergroup%2Fgoogle_maps_places_autocomplete_widgets_butlerfork)
