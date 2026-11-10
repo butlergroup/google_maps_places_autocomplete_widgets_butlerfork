@@ -12,16 +12,16 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "axios": "^1.21.0",
+    "axios": "^1.21.1",
     "cors": "^2.8.6",
     "express": "^5.3.0",
     "helmet": "^8.3.0"
   },
   "overrides": {
-    "path-to-regexp": "^8.4.2",
-    "js-yaml": "^5.4.3",
+    "path-to-regexp": "^9.0.0",
+    "js-yaml": "^5.5.0",
     "brace-expansion": "^5.0.12",
-    "qs": "6.16.0",
-    "minimatch": "^10.2.6"
+    "qs": "6.17.1",
+    "minimatch": "^11.0.7"
   }
 }
