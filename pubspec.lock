@@ -184,6 +184,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  google_maps_places_autocomplete_widgets:
+    dependency: "direct main"
+    description:
+      name: google_maps_places_autocomplete_widgets
+      sha256: "6c99ed5745161d2cd318757e322e6e760c7448d43511f28eb1d0f5e05f3cdd1d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.2"
   http:
     dependency: "direct main"
     description:

@@ -30,10 +30,26 @@ Have questions or suggestions? Reach out to us at welcome@butlergroup.net. Thank
 
 ## Additional Notes
 
+> **Three interchangeable Google Places backends — same widgets, same results:**
+>
+> - ✅ **Places API (New)** *(default)* — modern REST API, works on **every platform including Flutter web**
+> - ✅ **Legacy Places API** — one parameter (`apiVersion: PlacesApiVersion.legacy`) for older Cloud projects where it is still enabled
+> - ✅ **Native Places SDKs for Android/iOS** — via the companion package [`google_maps_places_autocomplete_widgets_native`](https://pub.dev/packages/google_maps_places_autocomplete_widgets_native): app-restricted API keys with **zero configuration**, plus optional **Firebase App Check** attestation so a leaked or scraped key **cannot be abused outside your genuine app**
+>
+> …or inject any custom backend (e.g. a key-hiding server proxy) via `placeApiProvider:`.
+
 Feature complete, 'drop in' replacements for Flutter `TextField` or `TextFormField` widgets, providing address autocompletion using the Google Maps Places API.
-The only required additional parameter is your Google Maps API key.
+The only required additional parameter is your Google Maps API key
+(or omit it entirely and supply your own `placeApiProvider` backend).
 Just rename `TextField` -> `AddressAutocompleteTextField`,
 (or `TextFormField` -> `AddressAutocompleteTextFormField`),
+
+As of v2.0.0 the widgets use **Places API (New)** by default (the legacy
+Places API cannot be enabled on new Google Cloud projects). Make sure
+["Places API (New)"](https://console.cloud.google.com/apis/library/places.googleapis.com)
+is enabled for your API key's project. Existing 1.x users: see
+[MIGRATION.md](MIGRATION.md) — for most apps no code changes are needed. To
+temporarily keep using the legacy API, pass `apiVersion: PlacesApiVersion.legacy`.
 
 If desired customize any look/behavior of the autocompletion using the additional optional parameters.
 
@@ -60,6 +76,21 @@ Easily incorporated into existing forms which contain multiple fields for captur
 
 ## Features
 
+- Uses Google **Places API (New)** by default; the legacy Places API remains
+  available via `apiVersion: PlacesApiVersion.legacy`.
+- Supports application-restricted API keys via `androidPackageName`,
+  `androidCertSha1Fingerprint` and `iosBundleId` (sent as Google's
+  `X-Android-Package` / `X-Android-Cert` / `X-Ios-Bundle-Identifier` headers).
+  For the strongest client-side key protection (native SDK identity + optional
+  Firebase App Check attestation) use the companion package
+  [`google_maps_places_autocomplete_widgets_native`](https://pub.dev/packages/google_maps_places_autocomplete_widgets_native)
+  on Android/iOS.
+- Pluggable backend: implement the public `PlaceApiProvider` abstract class
+  and pass it as `placeApiProvider:` to use your own proxy/native backend
+  (also handy as a fake in widget tests).
+- **Flutter web now works** (with the default new API): `places.googleapis.com`
+  supports CORS, so browsers can call it directly — use a referrer-restricted
+  key. The legacy API never worked on web (its endpoint sends no CORS headers).
 - Support for most common `TextField` and `TextFormField` parameters (and any
   less common parameter can easily be added).
 - Support for both address and postal/zip code autocompletion. (`type:AutoCompleteType.address` or `type:AutoCompleteType.postalCode`)
@@ -79,9 +110,61 @@ Easily incorporated into existing forms which contain multiple fields for captur
 - The base classes and mixin generics provided in this package allow for the addition
   of address autocompletion to virtually any of custom widgets.
 
+## Securing your Google Maps API key
+
+Any API key that ships inside an app binary or web page can be extracted —
+from an APK/IPA, from browser dev tools, or by sniffing traffic — and a
+leaked Places key can be abused to run up **your** bill. Places API (New)
+gives you escalating levels of protection, all supported by this package
+family:
+
+| | Approach | Platforms | Protection |
+|---|----------|-----------|-----------|
+| 1 | Restricted key + this package's `androidPackageName:` / `androidCertSha1Fingerprint:` / `iosBundleId:` parameters (sent as Google's restriction headers over REST) | all | **Deterrent only** — these header values are public information, so they stop key-scraping bots and accidental reuse, not determined attackers |
+| 2 | [`google_maps_places_autocomplete_widgets_native`](https://pub.dev/packages/google_maps_places_autocomplete_widgets_native) — the companion package backing these same widgets with Google's **native Places SDKs** | Android, iOS | The SDK attaches your app's identity (package + signing cert / bundle id) itself, so **app-restricted keys work with zero configuration** and can't be borrowed by simply copying headers |
+| 3 | The native package with **Firebase App Check** enabled (`useAppCheck: true`) | Android, iOS | **Cryptographic app attestation** (Play Integrity / App Attest). With enforcement turned on, Google rejects every request that doesn't come from your genuine app — a scraped or leaked key becomes useless |
+| 4 | Your own backend proxy injected via `placeApiProvider:` | all | **Strongest**: the key lives on your server and never ships to clients at all |
+
+On **web**, use an HTTP-referrer-restricted key (the browser itself
+enforces nothing — tier 4 is the only strong option there). Whatever the
+tier, also set **API restrictions** (key valid only for Places API (New))
+and quota caps in the Cloud console.
+
+### Using the native Places SDK backend (Android/iOS)
+
+The companion package drops into the same widgets — initialize once at
+startup and inject its provider (no `mapsApiKey:` on the widget at all,
+since core 2.1.0):
+
+```dart
+await NativePlaceApiProvider.initialize(
+  mapsApiKey: yourKey,
+  useAppCheck: true, // opt-in Firebase App Check attestation (tier 3)
+);
+
+AddressAutocompleteTextField(
+  placeApiProvider: NativePlaceApiProvider(componentCountry: 'us'),
+  onSuggestionClick: onSuggestionClick,
+),
+```
+
+Everything else about the widgets — callbacks, styling, the parsed `Place`
+results — is identical on either backend. See
+[that package's README](https://pub.dev/packages/google_maps_places_autocomplete_widgets_native)
+for platform setup and a step-by-step App Check walkthrough (Firebase
+project, debug tokens, monitoring, and flipping on enforcement). The full
+flow — including a leaked key being rejected under enforcement while the
+real app keeps working — has been verified end-to-end on physical devices.
+
+Migrating an existing app (1.x or 2.x REST) to the native backend?
+**[MIGRATION_NATIVE.md](MIGRATION_NATIVE.md)** is a complete step-by-step
+playbook — written so you can also hand it directly to an AI coding agent
+("apply MIGRATION_NATIVE.md from the google_maps_places_autocomplete_widgets_butlerfork
+repo to this project").
+
 ## Usage
 
-You can find a complete example of usage in `example/main.dart`.
+You can find a complete example of usage in `example/lib/main.dart`.
 
 import the package:
 
@@ -146,6 +229,16 @@ void onSuggestionClick(Place placeDetails) {
   }
 ```
 
+### Notes when using Places API (New) (the default)
+
+- The legacy `address` type filter has no equivalent in the new API;
+  `AutoCompleteType.address` (the default) is translated to
+  `street_address` + `premise` + `subpremise`. Use
+  `type: AutoCompleteType.geocode` for broader geocoding matches.
+- `Suggestion.terms` is always `null` (no new-API equivalent).
+- See [MIGRATION.md](MIGRATION.md) for key-restriction setup and custom
+  `placeApiProvider` backends.
+
 ## More complex use and customization examples
 
 A complete example mobile/desktop applications illustrates the use of both common
@@ -155,8 +248,10 @@ multiple other TextFormFields from the user's selected address suggestion.
 
 ## Additional information
 
-This package implements the official documentation of Google Maps Places API
-and use address as types and receive a detail with address_component and geometry as fields only
+This package follows the official Google Maps Places API documentation. The
+autocomplete requests use your chosen `type`/`types` filters (defaulting to
+address results) and the details request retrieves the address components,
+formatted address and location used to populate the returned `Place`.
 
 GitHub Repo: [https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork](https://github.com/butlergroup/google_maps_places_autocomplete_widgets_butlerfork)
 

@@ -192,7 +192,58 @@ Added an override for js-yaml@latest to correct CVE-2025-64718
 
 ## 1.3.4
 
-Package forked from https://github.com/timmaffett/google_maps_places_autocomplete_widgets and modified for server-side use via a Node.js application 
+Package forked from https://github.com/timmaffett/google_maps_places_autocomplete_widgets_butlerfork and modified for server-side use via a Node.js application 
+
+## 2.1.2
+
+* Fix: `Place.zipCodePlus4` is now `null` when the result has no postal code
+  (previously it contained the literal text "null").
+* Fix: `Suggestion.toString()` printed the `secondary_text` value based on
+  whether `mainText` was null.
+* README: new "Securing your Google Maps API key" section — the protection
+  tiers from restriction headers to the native SDK companion package
+  ([`google_maps_places_autocomplete_widgets_native`](https://pub.dev/packages/google_maps_places_autocomplete_widgets_native))
+  with Firebase App Check attestation, to a backend proxy.
+
+## 2.1.1
+
+* Add missing type annotation flagged by pub.dev static analysis (no
+  functional change).
+
+## 2.1.0
+
+* `mapsApiKey` is now optional when a custom `placeApiProvider` is supplied
+  (previously callers had to pass a dummy value). It remains required for the
+  built-in backends (enforced by assert).
+* NEW companion package
+  [`google_maps_places_autocomplete_widgets_native`](https://pub.dev/packages/google_maps_places_autocomplete_widgets_native)
+  (v1.0.0, in `packages/` of this repo): a `PlaceApiProvider` backed by the
+  native Places SDKs (Android/iOS) with app-restricted API key support and
+  opt-in Firebase App Check attestation — verified end-to-end on real devices
+  with App Check enforcement enabled.
+
+## 2.0.0
+
+* **Places API (New) is now the default backend** (`places.googleapis.com/v1`).
+  The legacy Places API was set to legacy status by Google on 2025-03-01 and
+  cannot be enabled on new Cloud projects. Pass
+  `apiVersion: PlacesApiVersion.legacy` to keep using the legacy API where it
+  is still enabled. See MIGRATION.md.
+* NEW: `placeApiProvider` widget parameter + public abstract
+  `PlaceApiProvider` — inject a custom backend (backend proxy, native SDK
+  wrapper, or test fake).
+* NEW: `androidPackageName`, `androidCertSha1Fingerprint`, `iosBundleId`
+  widget parameters — support application-restricted API keys over REST.
+* Behavior on the new backend: `Suggestion.terms` is `null`;
+  `AutoCompleteType.address` is translated to
+  `street_address`/`premise`/`subpremise` (no `address` filter in the new API).
+* BREAKING (internal): the concrete class formerly named `PlaceApiProvider`
+  (not exported from the barrel) is now `LegacyPlaceApiProvider`.
+* Removed stray debugPrint logging from the overlay mixin.
+* NEW: Flutter **web** works with the new backend (`places.googleapis.com`
+  supports CORS; the legacy endpoint never did — use a referrer-restricted key).
+* Example app: dropdown to select the Places API backend at runtime (with a
+  warning that the legacy API cannot work on web).
 
 ## 1.3.3
 
@@ -211,7 +262,7 @@ Package forked from https://github.com/timmaffett/google_maps_places_autocomplet
 
 * Added `type` and `types` arguments for specifying the `AutoCompleteType` enum of Google Places autocomplete information to
   return.  (Defaults to `AutoCompleteType.address`).  
-  This allows `AutoCompleteType.cities` as [Issue #1](https://github.com/timmaffett/google_maps_places_autocomplete_widgets/issues/1) requested.
+  This allows `AutoCompleteType.cities` as [Issue #1](https://github.com/timmaffett/google_maps_places_autocomplete_widgets_butlerfork/issues/1) requested.
 * Deprecated the use of `postalCodeLookup` parameter, use `type:AutoCompleteType.postalCode` instead)
 
 ## 1.2.6

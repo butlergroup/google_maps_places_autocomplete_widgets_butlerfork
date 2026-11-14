@@ -10,3 +10,5 @@ export 'package:google_maps_places_autocomplete_widgets_butlerfork/widgets/addre
 export 'package:google_maps_places_autocomplete_widgets_butlerfork/widgets/address_autocomplete_textformfield.dart';
 export 'package:google_maps_places_autocomplete_widgets_butlerfork/model/place.dart';
 export 'package:google_maps_places_autocomplete_widgets_butlerfork/model/suggestion.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/api/place_api_provider.dart';
+export 'package:google_maps_places_autocomplete_widgets_butlerfork/api/places_api_version.dart';

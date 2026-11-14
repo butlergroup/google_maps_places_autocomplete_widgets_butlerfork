@@ -8,6 +8,8 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_places_autocomplete_widgets_butlerfork/api/autocomplete_types.dart';
 
+import '/api/place_api_provider.dart';
+import '/api/places_api_version.dart';
 import '/model/suggestion.dart';
 import '/model/place.dart';
 import '/service/address_service.dart';
@@ -40,6 +42,35 @@ abstract class AddresssAutocompleteStatefulWidget extends StatefulWidget {
   /// item is selected
   abstract final String? Function(Place place)?
       onSuggestionClickGetTextToUseForControl;
+
+  /// Your Google Maps API key. Required unless a custom [placeApiProvider]
+  /// is supplied (in which case the built-in backends — and this key — are
+  /// not used).
+  abstract final String? mapsApiKey;
+
+  /// Which Google Places backend to use. Defaults to
+  /// [PlacesApiVersion.placesApiNew]; pass [PlacesApiVersion.legacy] to keep
+  /// using the legacy Places API on Google Cloud projects where it is still
+  /// enabled. Ignored when [placeApiProvider] is supplied.
+  abstract final PlacesApiVersion apiVersion;
+
+  /// Optional custom backend (native SDK wrapper, backend proxy, test fake).
+  /// When supplied, [apiVersion], [mapsApiKey] and the built-in providers are
+  /// not used for API calls.
+  abstract final PlaceApiProvider? placeApiProvider;
+
+  /// Optional — your Android applicationId, sent as the `X-Android-Package`
+  /// header so Android-app-restricted API keys work. Use together with
+  /// [androidCertSha1Fingerprint].
+  abstract final String? androidPackageName;
+
+  /// Optional — the SHA-1 signing-certificate fingerprint registered for
+  /// your Android app in the Google Cloud console, sent as `X-Android-Cert`.
+  abstract final String? androidCertSha1Fingerprint;
+
+  /// Optional — your iOS bundle identifier, sent as
+  /// `X-Ios-Bundle-Identifier` so iOS-app-restricted API keys work.
+  abstract final String? iosBundleId;
 
   ///builder used to render each item displayed
   ///must not be null
@@ -134,22 +165,28 @@ mixin SuggestionOverlayMixin<T extends AddresssAutocompleteStatefulWidget>
     on State<T> implements OverlaySuggestionDetails {
   @override
   void initState() {
-    debugPrint('SuggestionOverlayMixin init() called!!!!');
     super.initState();
     controller =
         widget.controller ?? TextEditingController(text: widget.initialValue);
     focusNode = widget.focusNode ?? FocusNode();
 
-    addressService =
-        AddressService(sessionToken, widget.componentCountry, widget.language);
+    addressService = AddressService(
+      sessionToken,
+      widget.mapsApiKey,
+      widget.componentCountry,
+      widget.language,
+      apiVersion: widget.apiVersion,
+      placeApiProvider: widget.placeApiProvider,
+      androidPackageName: widget.androidPackageName,
+      androidCertSha1Fingerprint: widget.androidCertSha1Fingerprint,
+      iosBundleId: widget.iosBundleId,
+    );
 
     focusNode.addListener(showOrHideOverlayOnFocusChange);
   }
 
   @override
   void dispose() {
-    debugPrint('SuggestionOverlayMixin dispose() called!!!!');
-
     if (widget.controller == null) {
       controller!.dispose(); // only dispose if we created it
       controller = null;
@@ -197,8 +234,6 @@ mixin SuggestionOverlayMixin<T extends AddresssAutocompleteStatefulWidget>
     if (entry != null) {
       entry?.remove();
       entry = null;
-      debugPrint(
-          'hideOverlay suggestionHasBeenSelected=$suggestionHasBeenSelected');
       if (!suggestionHasBeenSelected) {
         triggerNoSuggestionCallback();
       }

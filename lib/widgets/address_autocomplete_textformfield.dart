@@ -8,6 +8,8 @@ import 'package:google_maps_places_autocomplete_widgets_butlerfork/api/autocompl
 import 'package:uuid/uuid.dart';
 
 import 'address_autocomplete_generic.dart';
+import '/api/place_api_provider.dart';
+import '/api/places_api_version.dart';
 import '/model/place.dart';
 import '/model/suggestion.dart';
 import '/service/address_service.dart';
@@ -49,6 +51,26 @@ class AddressAutocompleteTextFormField
   ///Callback triggered when a item is selected
   @override
   final String? Function(Place place)? onSuggestionClickGetTextToUseForControl;
+
+  /// Your Google Maps API key. Required unless [placeApiProvider] is
+  /// supplied.
+  @override
+  final String? mapsApiKey;
+
+  @override
+  final PlacesApiVersion apiVersion;
+
+  @override
+  final PlaceApiProvider? placeApiProvider;
+
+  @override
+  final String? androidPackageName;
+
+  @override
+  final String? androidCertSha1Fingerprint;
+
+  @override
+  final String? iosBundleId;
 
   ///builder used to render each item displayed
   ///must not be null
@@ -224,6 +246,12 @@ class AddressAutocompleteTextFormField
 
   const AddressAutocompleteTextFormField({
     super.key,
+    this.mapsApiKey,
+    this.apiVersion = PlacesApiVersion.placesApiNew,
+    this.placeApiProvider,
+    this.androidPackageName,
+    this.androidCertSha1Fingerprint,
+    this.iosBundleId,
     this.controller,
     this.requiredField = false,
     this.validator = defaultValidator,
@@ -296,7 +324,9 @@ class AddressAutocompleteTextFormField
     this.enableIMEPersonalizedLearning = true,
     this.mouseCursor,
     this.contextMenuBuilder,
-  }) : assert(
+  })  : assert(mapsApiKey != null || placeApiProvider != null,
+            'mapsApiKey is required unless a custom placeApiProvider is supplied'),
+        assert(
             (postalCodeLookup == true && type == null && types == null) ||
                 (postalCodeLookup == false && type == null && types == null) ||
                 (postalCodeLookup == null && type == null && types == null) ||
